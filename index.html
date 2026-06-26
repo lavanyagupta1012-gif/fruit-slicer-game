@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>3D Fruit Slicer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Canvas for rendering the game -->
+        <canvas id="game-canvas"></canvas>
+        
+        <!-- UI Layer -->
+        <div id="ui-layer">
+            
+            <!-- Main Menu -->
+            <div id="main-menu" class="screen active">
+                <div class="side-stats">
+                    <div>🏆 <span id="menu-highscore-display">0</span></div>
+                    <div>🪙 <span id="menu-coins-display">0</span></div>
+                </div>
+                <h1 class="game-title">Fruit Slicer</h1>
+                <button id="btn-play" class="primary-btn">PLAY</button>
+                <button id="btn-shop" class="secondary-btn">SHOP</button>
+            </div>
+            
+            <!-- HUD (Heads Up Display) during gameplay -->
+            <div id="hud" class="screen hidden">
+                <div class="score-container">
+                    <span class="score-icon">🍎</span>
+                    <span id="score-display">0</span>
+                </div>
+                <div class="lives-container" id="lives-display">
+                    ❤️ ❤️ ❤️
+                </div>
+                <div class="combo-text" id="combo-display"></div>
+            </div>
+            
+            <!-- Game Over Screen -->
+            <div id="game-over" class="screen hidden glass-panel">
+                <h2>GAME OVER</h2>
+                <div class="stats">
+                    <p>Score: <span id="final-score">0</span></p>
+                    <p>Coins Earned: <span id="coins-earned">0</span></p>
+                </div>
+                <button id="btn-restart" class="primary-btn">RETRY</button>
+                <button id="btn-menu" class="secondary-btn">MENU</button>
+            </div>
+            
+            <!-- Shop Screen -->
+            <div id="shop-screen" class="screen hidden glass-panel">
+                <h2>SHOP</h2>
+                <div class="shop-coins">Coins: <span id="total-coins">0</span></div>
+                
+                <div class="shop-items" id="shop-items-container">
+                    <!-- Items populated dynamically -->
+                </div>
+                
+                <button id="btn-shop-back" class="secondary-btn">BACK</button>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets.js"></script>
+    <script src="math.js"></script>
+    <script src="particles.js"></script>
+    <script src="shop.js"></script>
+    <script src="game.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
