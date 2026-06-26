@@ -20,6 +20,9 @@ FruitTypes.forEach(f => {
 const katanaImg = new Image();
 katanaImg.src = 'katana.png';
 
+const bombImg = new Image();
+bombImg.src = 'bomb.png';
+
 // Draw full 3D fruit
 const drawFruit = (ctx, type, radius) => {
     let img = fruitImages[type];
