@@ -64,6 +64,15 @@ document.addEventListener('DOMContentLoaded', () => {
             comboDisplay.classList.remove('combo-active');
         }, 1000);
     };
+
+    game.onDifficultyChange = (label) => {
+        const diffEl = document.getElementById('difficulty-display');
+        diffEl.textContent = `⚡ ${label}`;
+        diffEl.classList.remove('show');
+        void diffEl.offsetWidth; // force reflow to restart animation
+        diffEl.classList.add('show');
+        setTimeout(() => diffEl.classList.remove('show'), 2000);
+    };
     
     game.onGameOver = (score, coins, isNewHigh) => {
         finalScore.textContent = score + (isNewHigh ? ' (NEW HIGH!)' : '');

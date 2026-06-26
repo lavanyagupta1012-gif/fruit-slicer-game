@@ -191,6 +191,33 @@ button:active {
     transition: opacity 0.2s, transform 0.2s;
 }
 
+.difficulty-label {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.85);
+    text-shadow: 0 0 8px rgba(255,100,0,0.7);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.difficulty-label.show {
+    opacity: 1;
+    animation: diffPop 2s forwards;
+}
+
+@keyframes diffPop {
+    0%   { opacity: 0; transform: translateX(-50%) scale(0.8); }
+    15%  { opacity: 1; transform: translateX(-50%) scale(1.15); }
+    80%  { opacity: 1; transform: translateX(-50%) scale(1); }
+    100% { opacity: 0; transform: translateX(-50%) scale(1); }
+}
+
 .combo-active {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1.2);
