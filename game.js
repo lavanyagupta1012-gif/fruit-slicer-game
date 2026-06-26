@@ -1,7 +1,7 @@
 // Game Engine
 
 class Fruit {
-    constructor(canvasWidth, canvasHeight) {
+    constructor(canvasWidth, canvasHeight, diffMult = 1.0) {
         this.typeObj = FruitTypes[Math.floor(Math.random() * FruitTypes.length)];
         this.type = this.typeObj.name;
         this.radius = Math.random() * 15 + 40; // 40-55px
@@ -12,8 +12,8 @@ class Fruit {
         
         // Velocity (arc trajectory)
         let targetX = canvasWidth / 2;
-        this.vx = (targetX - this.x) * 0.006 + (Math.random() - 0.5) * 3;
-        this.vy = -(Math.random() * 3 + 12); // Jump strength
+        this.vx = ((targetX - this.x) * 0.006 + (Math.random() - 0.5) * 3) * diffMult;
+        this.vy = -(Math.random() * 3 + 12) * Math.sqrt(diffMult); // Jump strength
         
         this.rotation = 0;
         this.vr = (Math.random() - 0.5) * 0.2;
@@ -200,6 +200,8 @@ class Game {
         this.lives = 3;
         this.combo = 0;
         this.spawnInterval = 3000;
+        this.difficultyMult = 1.0;
+        this.gravity = 0.22;
         this.state = 'PLAYING';
         
         if(this.onScoreUpdate) this.onScoreUpdate(this.score);
@@ -271,10 +273,12 @@ class Game {
             
             let count = Math.floor(Math.random() * maxFruits) + 1;
             for(let i=0; i<count; i++) {
-                this.fruits.push(new Fruit(this.width, this.height));
+                this.fruits.push(new Fruit(this.width, this.height, this.difficultyMult));
             }
             // Slowly increase difficulty
             this.spawnInterval = Math.max(700, this.spawnInterval - 30);
+            this.difficultyMult = Math.min(1.8, this.difficultyMult + 0.02);
+            this.gravity = 0.22 * this.difficultyMult;
         }
 
         // Update entities
